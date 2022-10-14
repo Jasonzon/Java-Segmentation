@@ -73,8 +73,21 @@ public class InstanceSegmentationGraphe {
 
         Img image = isegm.getImg();
         Graphe graphe = new Graphe(image.nbColonnes() * image.nbLignes());
+        for(int i = 0;i<image.nbColonnes();i++) {
+            for(int j = 0;j<image.nbLignes();i++) {
+                if (i+1 < image.nbColonnes()) {
+                    int penalite = penalite(image.get(i,j), image.get(i+1,j));
+                    graphe.set(i,j,penalite);
+                }
+                if (j+1 < image.nbLignes()) {
+                    int penalite = penalite(image.get(i,j), image.get(i,j+1));
+                    graphe.set(i,j,penalite);
+                }
+            }
+        }
+        this.g = graphe;
         
-
+        
 
 
     }
