@@ -81,6 +81,12 @@ public class InstanceSegmentationGraphe {
                 if (J+1 < image.nbLignes()) {
                     graphe.set(i,i+image.nbColonnes(),penalite(image.get(I,J), image.get(I,J+1)));
                 }
+                if (I-1 >= 0) {
+                    graphe.set(i,i-1,penalite(image.get(I,J), image.get(I-1,J)));
+                }
+                if (J-1 >= 0) {
+                    graphe.set(i,i-image.nbColonnes(),penalite(image.get(I,J), image.get(I,J-1)));
+                }
             }
         }
         this.g = graphe;
