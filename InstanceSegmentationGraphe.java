@@ -70,8 +70,12 @@ public class InstanceSegmentationGraphe {
 
 	    et par exemple les arcs sortants du sommet 3 sont les arcs 3->0, 3->4, et 3->6
 	    */
-       
-    
+
+        Img image = isegm.getImg();
+        Graphe graphe = new Graphe(image.nbColonnes() * image.nbLignes());
+        
+
+
 
     }
 
