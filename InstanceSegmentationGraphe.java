@@ -70,26 +70,24 @@ public class InstanceSegmentationGraphe {
 
 	    et par exemple les arcs sortants du sommet 3 sont les arcs 3->0, 3->4, et 3->6
 	    */
-
         Img image = isegm.getImg();
         Graphe graphe = new Graphe(image.nbColonnes() * image.nbLignes());
-        for(int i = 0;i<image.nbColonnes();i++) {
-            for(int j = 0;j<image.nbLignes();i++) {
-                if (i+1 < image.nbColonnes()) {
-                    int penalite = penalite(image.get(i,j), image.get(i+1,j));
-                    graphe.set(i,j,penalite);
+        for(int I = 0;I<image.nbColonnes();I++) {
+            for(int J = 0;J<image.nbLignes();J++) {
+                int i = image.calculIndice(I, J);
+                if (I+1 < image.nbColonnes()) {
+                    graphe.set(i,i+1,penalite(image.get(I,J), image.get(I+1,J)));
                 }
-                if (j+1 < image.nbLignes()) {
-                    int penalite = penalite(image.get(i,j), image.get(i,j+1));
-                    graphe.set(i,j,penalite);
+                if (J+1 < image.nbLignes()) {
+                    graphe.set(i,i+image.nbColonnes(),penalite(image.get(I,J), image.get(I,J+1)));
                 }
             }
         }
         this.g = graphe;
         
-        
-
-
+        this.b = new ArrayList<Integer>();
+        this.f = new ArrayList<Integer>();
+        System.out.println(graphe.toString());
     }
 
     public int getN(){
