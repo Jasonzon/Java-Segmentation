@@ -143,7 +143,6 @@ public class Graphe{
 
 
     public void set(int i, int j, int v){
-
         if(i!=j) {
             Couple<Integer, Integer> c = isVoisinSortantAux(i, j);
             if (c != null) { //alors il y avait arc i->j de capacité non nulle

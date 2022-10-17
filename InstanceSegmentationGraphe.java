@@ -90,10 +90,6 @@ public class InstanceSegmentationGraphe {
             }
         }
         this.g = graphe;
-        
-        this.b = new ArrayList<Integer>();
-        this.f = new ArrayList<Integer>();
-        System.out.println(graphe.toString());
     }
 
     public int getN(){

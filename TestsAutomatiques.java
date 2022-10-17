@@ -113,7 +113,6 @@ class TestsAutomatiques {
         b.add(pixB);
         f.add(pixF);
         InstanceSegmentationGraphe isegG = new InstanceSegmentationGraphe(g,f,b);
-
         Reseau r = new Reseau(isegG);
         double res = 0;
         int s = r.getS();

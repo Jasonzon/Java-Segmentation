@@ -55,8 +55,15 @@ public class Reseau {
     public Reseau(InstanceSegmentationGraphe ins) {
         //A COMPLETER 
 
- 
-
+        Graphe G = ins.getGraphe();
+        int N = G.getN();
+        int M = Integer.MAX_VALUE;
+        Graphe graphe = new Graphe(N + 2, G);
+        graphe.set(N,ins.getB().get(0),M);
+        graphe.set(ins.getF().get(0),N+1,M);
+        this.g = graphe;
+        this.s = N;
+        this.t = N+1;
     }
 
 
