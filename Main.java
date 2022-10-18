@@ -30,10 +30,20 @@ public class Main {
 	return g;
     }
 
-    public static ArrayList<Integer> testMinCut(){
-	//A COMPLETER
-	return null;
-   }
+    public static ArrayList<Integer> testMinCut() {
+		Graphe graphe = new Graphe(5);
+		graphe.set(0,1,1);
+		graphe.set(0,2,10);
+		graphe.set(1,2,6);
+		graphe.set(2,1,2);
+		graphe.set(1,3,8);
+		graphe.set(2,4,2);
+		graphe.set(3,4,3);
+
+		Reseau reseau = new Reseau(graphe, 0, 4);
+		ArrayList<Integer> coupe = reseau.coupeMin();
+		return coupe;
+    }
 
     public static void addPoints(ArrayList<Couple<Integer,Integer>> liste, int i, int j, int size){
 		for(int x=0;x<size;x++){

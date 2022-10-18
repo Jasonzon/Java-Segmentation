@@ -207,8 +207,20 @@ public class Reseau {
      * pensez à utiliser la méthode "trouverCheminDansResiduel(..)" et "modifieSelonChemin(..) (dans la classe FLot) qui vous sont fournies
      */
     public Couple<Flot, ArrayList<Integer>> flotMaxCoupeMin() {
-        //à compléter
-        return null;
+        
+        Flot flot = new Flot(this);
+        Couple<ArrayList<Integer>, ArrayList<Integer>> couple = trouverCheminDansResiduel(flot);
+        ArrayList<Integer> c1 = couple.getElement1();
+        ArrayList<Integer> c2 = couple.getElement2();
+        ArrayList<Integer> c = new ArrayList<Integer>();
+        if (c1 == null) {
+            c = c2;
+        }
+        else {
+            c = c1;
+        }
+        flot.modifieSelonChemin(c, s);
+        return new Couple<Flot, ArrayList<Integer>>(flot,c);
     }
 
     /**
