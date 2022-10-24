@@ -28,7 +28,15 @@ public class InstanceSegmentation {
         //calcule une solution optimale de l'instance (Im,f,b) en se réduisant à SemgentationGraphe (pensez à utiliser des méthodes de Img pour les conversions entre numéros de sommets dans le graphe
 	//et coordonnées de pixels
         //A COMPLETER
-	return null;	
+
+        InstanceSegmentationGraphe iseg = new InstanceSegmentationGraphe(this);
+        ArrayList<Integer> coupe = iseg.calculOpt();
+        ArrayList<Couple<Integer,Integer>> res = new ArrayList<Couple<Integer,Integer>>();
+        Img image = getImg();
+        for (int i = 0;i<coupe.size();i++) {
+            res.add(image.calculCoord(coupe.get(i)));
+        }
+        return res;
     }
 
     public Img creerImageSegmentee(){

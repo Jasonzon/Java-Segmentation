@@ -90,6 +90,18 @@ public class InstanceSegmentationGraphe {
             }
         }
         this.g = graphe;
+        ArrayList<Couple<Integer,Integer>> f = isegm.getF();
+        ArrayList<Couple<Integer,Integer>> b = isegm.getB();
+        ArrayList<Integer> B = new ArrayList<Integer>();
+        ArrayList<Integer> F = new ArrayList<Integer>();
+        for (int i=0;i<f.size();i++) {
+            F.add(image.calculIndice(f.get(i).getElement1(), f.get(i).getElement2()));
+        }
+        for (int i=0;i<b.size();i++) {
+            B.add(image.calculIndice(b.get(i).getElement1(), b.get(i).getElement2()));
+        }
+        this.b = B;
+        this.f = F;
     }
 
     public int getN(){
