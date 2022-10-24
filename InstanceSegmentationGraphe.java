@@ -109,6 +109,7 @@ public class InstanceSegmentationGraphe {
     public ArrayList<Integer> calculOpt(){
         Reseau reseau = new Reseau(this);
         ArrayList<Integer> coupe = reseau.coupeMin();
+        coupe.remove(0);
         return coupe;
     }
 
