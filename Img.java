@@ -118,9 +118,18 @@ de f qui sont noirs)
 
      */
     public Img appliquerFiltre(ArrayList<Couple<Integer,Integer>> B, ArrayList<Couple<Integer,Integer>>f, ArrayList<Couple<Integer,Integer>>b) {
-    	//A COMPLETER
-	
- 	return null;
+    	
+        Img image = new Img(this);
+        for (int i = 0;i<B.size();i++) {
+            data[B.get(i).getElement1()][B.get(i).getElement2()] = 200;
+        }
+        for (int i = 0;i<B.size();i++) {
+            data[b.get(i).getElement1()][b.get(i).getElement2()] = 255;
+        }
+        for (int i = 0;i<B.size();i++) {
+            data[f.get(i).getElement1()][f.get(i).getElement2()] = 0;
+        }
+        return image;
     }
 
 
