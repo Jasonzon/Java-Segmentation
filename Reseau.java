@@ -210,17 +210,24 @@ public class Reseau {
         
         Flot flot = new Flot(this);
         Couple<ArrayList<Integer>, ArrayList<Integer>> couple = trouverCheminDansResiduel(flot);
-        ArrayList<Integer> c1 = couple.getElement1();
-        ArrayList<Integer> c2 = couple.getElement2();
-        ArrayList<Integer> c = new ArrayList<Integer>();
-        if (c1 == null) {
-            c = c2;
+        ArrayList<Integer> c = couple.getElement2();
+        if (c != null) {
+            int min = c.get(0);
+            for (int i = 0;i < c.size()-1;i++) {
+                int sommet1 = c.get(i);
+                int sommet2 = c.get(i+1);
+                int cap = g.get(sommet1,sommet2);
+                if (cap < min) {
+                    min = cap;
+                }
+            }
+            flot.modifieSelonChemin(c, min);
+            return new Couple<Flot, ArrayList<Integer>>(flot,c);
         }
         else {
-            c = c1;
+            return null;
         }
-        flot.modifieSelonChemin(c, s);
-        return new Couple<Flot, ArrayList<Integer>>(flot,c);
+        
     }
 
     /**
