@@ -107,8 +107,9 @@ public class InstanceSegmentationGraphe {
      *
      */
     public ArrayList<Integer> calculOpt(){
-        //A COMPLETER
-        return null;
+        Reseau reseau = new Reseau(this);
+        ArrayList<Integer> coupe = reseau.coupeMin();
+        return coupe;
     }
 
 
