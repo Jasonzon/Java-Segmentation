@@ -209,25 +209,29 @@ public class Reseau {
     public Couple<Flot, ArrayList<Integer>> flotMaxCoupeMin() {
         
         Flot flot = new Flot(this);
-        Couple<ArrayList<Integer>, ArrayList<Integer>> couple = trouverCheminDansResiduel(flot);
-        ArrayList<Integer> c = couple.getElement2();
-        if (c != null) {
-            int min = c.get(0);
-            for (int i = 0;i < c.size()-1;i++) {
-                int sommet1 = c.get(i);
-                int sommet2 = c.get(i+1);
-                int cap = g.get(sommet1,sommet2);
-                if (cap < min) {
-                    min = cap;
+        boolean noMoreWays = false;
+        while (!noMoreWays) {
+            Couple<ArrayList<Integer>, ArrayList<Integer>> C = trouverCheminDansResiduel(flot);
+            ArrayList<Integer> chemin = C.getElement2();
+            if (chemin != null) {
+                int min = chemin.get(0);
+                for (int i = 0;i < chemin.size()-1;i++) {
+                    int sommet1 = chemin.get(i);
+                    int sommet2 = chemin.get(i+1);
+                    int cap = g.get(sommet1,sommet2);
+                    if (cap < min) {
+                        min = cap;
+                    }
                 }
+                flot.modifieSelonChemin(chemin, min);
             }
-            flot.modifieSelonChemin(c, min);
-            return new Couple<Flot, ArrayList<Integer>>(flot,c);
+            else {
+                noMoreWays = true;
+            }
         }
-        else {
-            return null;
-        }
-        
+        Couple<ArrayList<Integer>, ArrayList<Integer>> C2 = trouverCheminDansResiduel(flot);
+        ArrayList<Integer> coupe = C2.getElement1();
+        return new Couple<Flot, ArrayList<Integer>>(flot,coupe);
     }
 
     /**
