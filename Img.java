@@ -118,17 +118,17 @@ de f qui sont noirs)
 
      */
     public Img appliquerFiltre(ArrayList<Couple<Integer,Integer>> B, ArrayList<Couple<Integer,Integer>>f, ArrayList<Couple<Integer,Integer>>b) {
-    	
-        Img image = new Img(this);
+        int[][] d = this.data;
         for (int i = 0;i<B.size();i++) {
-            data[B.get(i).getElement1()][B.get(i).getElement2()] = 200;
+            d[B.get(i).getElement1()][B.get(i).getElement2()] = 200;
         }
-        for (int i = 0;i<B.size();i++) {
-            data[b.get(i).getElement1()][b.get(i).getElement2()] = 255;
+        for (int i = 0;i<b.size();i++) {
+            d[b.get(i).getElement1()][b.get(i).getElement2()] = 255;
         }
-        for (int i = 0;i<B.size();i++) {
-            data[f.get(i).getElement1()][f.get(i).getElement2()] = 0;
+        for (int i = 0;i<f.size();i++) {
+            d[f.get(i).getElement1()][f.get(i).getElement2()] = 0;
         }
+        Img image = new Img(d);
         return image;
     }
 

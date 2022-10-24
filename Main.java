@@ -58,7 +58,7 @@ public class Main {
 	
 		// test à dé-commenter tout à la fin du TP, non noté, juste pour tester avec une "vraie" image!
 
-		/*
+		
 		Img imageFich = new Img("images/baby_2k.pgm");
 
 
@@ -80,8 +80,8 @@ public class Main {
 
 		InstanceSegmentation isegFich = new InstanceSegmentation(imageFich,bbF,bbB);
 		Img resFich = isegFich.creerImageSegmentee();
-		resFich.creerImage("images/outputbaby_2k");
-		*/
+		resFich.creerImage("images/outputbaby_2k.pgm");
+		
 
     }
 
