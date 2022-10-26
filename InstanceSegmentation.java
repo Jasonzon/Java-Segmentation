@@ -31,11 +31,13 @@ public class InstanceSegmentation {
 
         InstanceSegmentationGraphe iseg = new InstanceSegmentationGraphe(this);
         ArrayList<Integer> coupe = iseg.calculOpt();
+        System.out.println("AIE " + coupe.size());
         ArrayList<Couple<Integer,Integer>> res = new ArrayList<Couple<Integer,Integer>>();
         Img image = getImg();
         for (int i = 0;i<coupe.size();i++) {
             res.add(image.calculCoord(coupe.get(i)));
         }
+        System.out.println("AIE " + res.size());
         return res;
     }
 

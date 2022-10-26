@@ -81,9 +81,5 @@ public class Main {
 		InstanceSegmentation isegFich = new InstanceSegmentation(imageFich,bbF,bbB);
 		Img resFich = isegFich.creerImageSegmentee();
 		resFich.creerImage("images/outputbaby_2k.pgm");
-		
-
     }
-
-
 }

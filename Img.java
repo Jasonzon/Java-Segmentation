@@ -118,6 +118,9 @@ de f qui sont noirs)
 
      */
     public Img appliquerFiltre(ArrayList<Couple<Integer,Integer>> B, ArrayList<Couple<Integer,Integer>>f, ArrayList<Couple<Integer,Integer>>b) {
+        System.out.println(B.size());
+        System.out.println(b.size());
+        System.out.println(f.size());
         int[][] d = this.data;
         for (int i = 0;i<B.size();i++) {
             d[B.get(i).getElement1()][B.get(i).getElement2()] = 200;

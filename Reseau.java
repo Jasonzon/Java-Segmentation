@@ -59,8 +59,20 @@ public class Reseau {
         int N = G.getN();
         int M = Integer.MAX_VALUE;
         Graphe graphe = new Graphe(N + 2, G);
-        graphe.set(N,ins.getB().get(0),M);
-        graphe.set(ins.getF().get(0),N+1,M);
+        for (int i=0;i<N;i++) {
+            if (ins.getB().contains(i)) {
+                graphe.set(N,i,Integer.MAX_VALUE);
+            }
+            else {
+                graphe.set(N,i,0);
+            }
+            if (ins.getF().contains(i)) {
+                graphe.set(i, N+1, Integer.MAX_VALUE);
+            }
+            else {
+                graphe.set(i, N+1, 0);
+            }
+        }
         this.g = graphe;
         this.s = N;
         this.t = N+1;
@@ -210,11 +222,12 @@ public class Reseau {
         
         Flot flot = new Flot(this);
         boolean noMoreWays = false;
+        ArrayList<Integer> coupe = new ArrayList<Integer>();
+        int min = Integer.MAX_VALUE;
         while (!noMoreWays) {
             Couple<ArrayList<Integer>, ArrayList<Integer>> C = trouverCheminDansResiduel(flot);
             ArrayList<Integer> chemin = C.getElement2();
             if (chemin != null) {
-                int min = chemin.get(0);
                 for (int i = 0;i < chemin.size()-1;i++) {
                     int sommet1 = chemin.get(i);
                     int sommet2 = chemin.get(i+1);
@@ -226,11 +239,11 @@ public class Reseau {
                 flot.modifieSelonChemin(chemin, min);
             }
             else {
+                coupe = C.getElement1();
                 noMoreWays = true;
             }
         }
-        Couple<ArrayList<Integer>, ArrayList<Integer>> C2 = trouverCheminDansResiduel(flot);
-        ArrayList<Integer> coupe = C2.getElement1();
+        System.out.println("COUPE : " + coupe.size());
         return new Couple<Flot, ArrayList<Integer>>(flot,coupe);
     }
 
@@ -241,12 +254,11 @@ public class Reseau {
      */
     public ArrayList<Integer> coupeMin() {
 
-
-        Reseau r = new Reseau(this);
-        Couple<Flot, ArrayList<Integer>> res = r.flotMaxCoupeMin();
+        //Reseau r = new Reseau(this);
+        Couple<Flot, ArrayList<Integer>> res = flotMaxCoupeMin();
         ArrayList<Integer> minCut = res.getElement2();
+        System.out.println("LA " + minCut.size());
         return minCut;
-
     }
 
 
